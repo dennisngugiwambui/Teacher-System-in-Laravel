@@ -42,4 +42,26 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+    //You can now change the following to models which you want to have relationship with
+//    public function posts()
+//    {
+//        return $this->hasMany('Post::class');
+//    }
+//
+//    public function comments()
+//    {
+//        return $this->hasMany('Comment::class');
+//    }
+
 }
