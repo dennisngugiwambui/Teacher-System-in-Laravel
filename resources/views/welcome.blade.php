@@ -42,7 +42,7 @@
 <body>
 <div class="login-container">
     <h2 class="login-title text-center">Teacher Login</h2>
-    <form method="POST" action="{{ route('teacher.login') }}">
+    <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="form-group">
             <label for="phone_number">Phone Number</label>
