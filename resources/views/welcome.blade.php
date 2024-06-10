@@ -9,7 +9,7 @@
     <!-- Custom CSS -->
     <style>
         body {
-            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -18,7 +18,7 @@
             font-family: 'Arial', sans-serif;
         }
         .login-container {
-            background-color: rgba(255, 255, 255, 0.85);
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
@@ -35,16 +35,16 @@
             margin-bottom: 20px;
         }
         .form-control {
-            border: 2px solid #9b59b6;
+            border: 2px solid #ff6f61;
             border-radius: 5px;
             transition: border-color 0.3s ease;
         }
         .form-control:focus {
-            border-color: #71b7e6;
+            border-color: #ff9a9e;
             box-shadow: none;
         }
         .btn-primary {
-            background-color: #9b59b6;
+            background-color: #ff6f61;
             border: none;
             border-radius: 25px;
             padding: 10px 20px;
@@ -52,15 +52,15 @@
             transition: background-color 0.3s ease;
         }
         .btn-primary:hover {
-            background-color: #71b7e6;
+            background-color: #ff9a9e;
         }
         .text-center a {
-            color: #9b59b6;
+            color: #ff6f61;
             text-decoration: none;
             transition: color 0.3s ease;
         }
         .text-center a:hover {
-            color: #71b7e6;
+            color: #ff9a9e;
         }
     </style>
 </head>
