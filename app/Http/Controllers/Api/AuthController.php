@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -10,6 +11,7 @@ use App\Models\Teacher;  // Use the Teachers model instead of User model
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
 use Illuminate\Support\Facades\Log;
+
 
 class AuthController extends Controller
 {
@@ -22,10 +24,14 @@ class AuthController extends Controller
             $teacher = Teacher::where('phone_number', $credentials['phone_number'])->first();
 
             if (!$teacher || !Hash::check($credentials['employee_id'], $teacher->employee_id)) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Invalid credentials'
-                ], 401);
+//                return response()->json([
+//                    'success' => false,
+//                    'message' => 'Invalid credentials'
+//                ], 401);
+
+                Toastr::info('Invalid Credentials. Please enter correct credentials', 'error!!' ,["positionClass" => "toast-bottom-right"]);
+
+                return redirect()->back()->with('error', 'Invavlid credentials');
             }
 
             // Generate a JWT token
