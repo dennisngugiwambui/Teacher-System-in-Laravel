@@ -11,3 +11,5 @@
 
 
 ## USAGE
+
+This project connects to teachers table. This system uses another project db for the registered teachers
