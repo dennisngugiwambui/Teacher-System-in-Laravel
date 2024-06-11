@@ -40,12 +40,14 @@ class AuthController extends Controller
             // Generate an expiration time for the token (e.g., 1 hour)
             $expiration = now()->addHours(1)->timestamp;
 
-            return response()->json([
-                'success' => true,
-                'token' => $token,
-                'expires_at' => $expiration,
-                'user' => $teacher,
-            ]);
+//            return response()->json([
+//                'success' => true,
+//                'token' => $token,
+//                'expires_at' => $expiration,
+//                'user' => $teacher,
+//            ]);
+
+
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
