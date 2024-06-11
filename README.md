@@ -15,3 +15,6 @@
 This project connects to teachers table. This system uses another project db for the registered teachers.
 
 The registered teachers can now be able to login and access any other services like:
+1. Take register
+2. Key in marks
+3. Track class subject perfomance
