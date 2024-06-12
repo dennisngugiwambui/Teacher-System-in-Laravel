@@ -50,7 +50,7 @@ class AuthController extends Controller
 
             Toastr::success('success', 'Login successful');
 
-
+            return redirect()->back()->with();
 
         } catch (Exception $e) {
             return response()->json([
