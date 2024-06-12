@@ -92,5 +92,65 @@
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 {!! Toastr::message() !!}
+
+
+<script>
+    let idleTime = 0;
+
+    // Increment the idle time counter every minute
+    let idleInterval = setInterval(timerIncrement, 60000); // 1 minute
+
+    // Zero the idle timer on mouse movement, key press, etc.
+    window.onmousemove = resetTimer;
+    window.onkeypress = resetTimer;
+
+    function timerIncrement() {
+        idleTime++;
+        if (idleTime > 14) { // 15 minutes
+            alert("You have been idle for too long. Please log in again.");
+            window.location.href = '/login'; // Redirect to login page
+        }
+    }
+
+    function resetTimer() {
+        idleTime = 0;
+
+        // Optionally, you can refresh the token here if needed
+        refreshToken();
+    }
+
+    function refreshToken() {
+        // Implement an AJAX call to refresh the token if needed
+        fetch('/api/refresh-token', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${getCookie('token')}`
+            }
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update the token cookie
+                    document.cookie = `token=${data.token}; path=/; max-age=${15 * 60}`;
+                } else {
+                    alert("Failed to refresh token. Please log in again.");
+                    window.location.href = '/login';
+                }
+            })
+            .catch(error => console.error('Error refreshing token:', error));
+    }
+
+    function getCookie(name) {
+        let cookieArr = document.cookie.split(";");
+        for(let i = 0; i < cookieArr.length; i++) {
+            let cookiePair = cookieArr[i].split("=");
+            if(name === cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+</script>
+
 </body>
 </html>

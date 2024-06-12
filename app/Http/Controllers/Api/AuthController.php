@@ -32,12 +32,10 @@ class AuthController extends Controller
             // Generate a JWT token
             $token = JWTAuth::fromUser($teacher);
 
-            // Generate an expiration time for the token (e.g., 1 hour)
-            $expiration = now()->addHours(1)->timestamp;
+            Toastr::success('Login successful', 'success', ["positionClass" => "toast-bottom-right"]);
 
-            Toastr::success('Login successful', 'success',  ["positionClass" => "toast-bottom-right"]);
-
-            return redirect()->route('home');
+            // Store token in cookies for the client to use
+            return redirect()->route('home')->withCookie(cookie('token', $token, 15 * 60));
 
         } catch (Exception $e) {
             // Log the exception message for debugging purposes
@@ -49,6 +47,7 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
 
 
     public function register(Request $request)
