@@ -23,15 +23,10 @@ class AuthController extends Controller
             // Find the teacher by phone number
             $teacher = Teacher::where('phone_number', $credentials['phone_number'])->first();
 
-            if (!$teacher || !Hash::check($credentials['employee_id'], $teacher->employee_id)) {
-//                return response()->json([
-//                    'success' => false,
-//                    'message' => 'Invalid credentials'
-//                ], 401);
-
-                Toastr::info('Invalid Credentials. Please enter correct credentials', 'error!!' ,["positionClass" => "toast-bottom-right"]);
-
-                return redirect()->back()->with('error', 'Invavlid credentials');
+            // Check if teacher exists and employee_id matches
+            if (!$teacher || $teacher->employee_id != $credentials['employee_id']) {
+                Toastr::info('Invalid Credentials. Please enter correct credentials', 'error!!', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->back()->with('error', 'Invalid credentials');
             }
 
             // Generate a JWT token
@@ -40,25 +35,21 @@ class AuthController extends Controller
             // Generate an expiration time for the token (e.g., 1 hour)
             $expiration = now()->addHours(1)->timestamp;
 
-//            return response()->json([
-//                'success' => true,
-//                'token' => $token,
-//                'expires_at' => $expiration,
-//                'user' => $teacher,
-//            ]);
+            Toastr::success('Login successful', 'success',  ["positionClass" => "toast-bottom-right"]);
 
-
-            Toastr::success('success', 'Login successful');
-
-            return redirect()->back()->with();
+            return redirect()->route('home');
 
         } catch (Exception $e) {
+            // Log the exception message for debugging purposes
+            Log::error('Login error: ' . $e->getMessage());
+
             return response()->json([
                 'success' => false,
-                'message' => 'Invalid credentials',
-            ]);
+                'message' => 'An error occurred during login',
+            ], 500);
         }
     }
+
 
     public function register(Request $request)
     {
@@ -88,10 +79,22 @@ class AuthController extends Controller
             // Invalidate the token
             Auth::logout();
 
-            return response()->json(['success' => true]);
+            Toastr::success('logout successful', 'success',  ["positionClass" => "toast-bottom-right"]);
+
+            return redirect()->route('index');
         } catch (Exception $e) {
             Log::error('Error invalidating token: ' . $e->getMessage());
             return response()->json(['error' => 'Could not parse token']);
         }
+    }
+
+    public function index()
+    {
+        return view('welcome');
+    }
+
+    public function home()
+    {
+        return view('home');
     }
 }

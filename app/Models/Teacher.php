@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Teacher extends Model
+class Teacher extends Model implements JWTSubject
 {
     use HasFactory;
 
@@ -35,4 +36,24 @@ class Teacher extends Model
         'emergency_contact_phone',
         'unique_id',
     ];
+
+    /**
+     * Get the identifier that will be stored in the JWT.
+     *
+     * @return mixed
+     */
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 }

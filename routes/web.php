@@ -13,10 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome')->name('home');
+//});
 
+Route::get('/', [App\Http\Controllers\Api\AuthController::class, 'index'])->name('index');
+
+Route::get('/home',[App\Http\Controllers\Api\AuthController::class, 'home'])->name('home');
 
 Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
 
