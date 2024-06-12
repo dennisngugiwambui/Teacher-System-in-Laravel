@@ -48,6 +48,8 @@ class AuthController extends Controller
 //            ]);
 
 
+            Toastr::success('success', 'Login successful');
+
 
 
         } catch (Exception $e) {
