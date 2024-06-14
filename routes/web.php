@@ -17,15 +17,32 @@ use Illuminate\Support\Facades\Route;
 //    return view('welcome')->name('home');
 //});
 
-Route::get('/', [App\Http\Controllers\Api\AuthController::class, 'index'])->name('index');
+//Route::get('/', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
+//
+//Route::get('/home',[App\Http\Controllers\Api\AuthController::class, 'home'])->name('home')->middleware('auth');
+//
+////Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
+//
+//Route::post('Authlogin', [App\Http\Controllers\Api\AuthController::class, 'Authlogin'])->name('auth.login');
+//
+//
+//Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'register']);
+//
+//Route::get('logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
 
-Route::get('/home',[App\Http\Controllers\Api\AuthController::class, 'home'])->name('home')->middleware('auth');
 
-Route::post('login', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
+Route::get('/', [App\Http\Controllers\Api\AuthController::class, 'login'])->name('login');
+
+//Route::get('/home', [App\Http\Controllers\Api\AuthController::class, 'home'])->name('home')->middleware('auth');
+
+Route::get('/home', [App\Http\Controllers\Api\AuthController::class, 'home'])->name('home')->middleware('auth');
+
+Route::post('Authlogin', [App\Http\Controllers\Api\AuthController::class, 'Authlogin'])->name('auth.login');
 
 Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'register']);
 
 Route::get('logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
+
 
 //// Post
 //Route::post('posts/create', [App\Http\Controllers\Api\PostController::class, 'create'])->middleware('jwtAuth');

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    public function login(Request $request)
+    public function Authlogin(Request $request)
     {
         try {
             $credentials = $request->only(['phone_number', 'employee_id']);
@@ -26,16 +26,26 @@ class AuthController extends Controller
             // Check if teacher exists and employee_id matches
             if (!$teacher || $teacher->employee_id != $credentials['employee_id']) {
                 Toastr::info('Invalid Credentials. Please enter correct credentials', 'error!!', ["positionClass" => "toast-bottom-right"]);
+                Log::info('Login failed: Invalid credentials');
                 return redirect()->back()->with('error', 'Invalid credentials');
             }
 
             // Generate a JWT token
             $token = JWTAuth::fromUser($teacher);
 
+            if (!$token) {
+                Log::error('JWT Token not generated');
+                return redirect()->back()->with('error', 'Failed to generate token');
+            }
+
             Toastr::success('Login successful', 'success', ["positionClass" => "toast-bottom-right"]);
+            Log::info('Login successful: Token generated', ['token' => $token]);
 
             // Store token in cookies for the client to use
-            return redirect()->route('home')->withCookie(cookie('token', $token, 15 * 60));
+            $cookie = cookie('token', $token, 15 * 60);
+            Log::info('Redirecting to home with cookie');
+
+            return redirect()->route('home')->withCookie($cookie);
 
         } catch (Exception $e) {
             // Log the exception message for debugging purposes
@@ -47,6 +57,8 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+
 
 
 
@@ -87,7 +99,7 @@ class AuthController extends Controller
         }
     }
 
-    public function index()
+    public function login()
     {
         return view('welcome');
     }
