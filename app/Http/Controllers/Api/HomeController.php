@@ -16,7 +16,7 @@ class HomeController extends Controller
         // Check if the teacher exists
         if (!$Teacher) {
             Toastr::error('error trying to load profile!!','error!');
-            return response()->json(['error' => 'Teacher not found'], 404);
+            return response()->json(['error' => 'Teacher not found'], 404)
         }
 
         return view('profile',  ['teacher' => $Teacher]);
