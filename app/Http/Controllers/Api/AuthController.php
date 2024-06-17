@@ -37,7 +37,7 @@ class AuthController extends Controller
             Toastr::success('Login successful', 'success', ["positionClass" => "toast-bottom-right"]);
             Log::info('Login successful: Token generated', ['token' => $token]);
 
-            $cookie = cookie('token', $token, 15);
+            $cookie = cookie('token', $token, 15); // 15 minutes expiry
             Log::info('Redirecting to home with cookie', ['cookie' => $cookie]);
 
             return redirect()->route('home')->withCookie($cookie);
@@ -51,6 +51,7 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
 
 
 
