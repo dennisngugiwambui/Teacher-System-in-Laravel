@@ -19,20 +19,15 @@ class AuthController extends Controller
     {
         try {
             $credentials = $request->only(['phone_number', 'employee_id']);
-
-            // Find the teacher by phone number
             $teacher = Teacher::where('phone_number', $credentials['phone_number'])->first();
 
-            // Check if teacher exists and employee_id matches
             if (!$teacher || $teacher->employee_id != $credentials['employee_id']) {
                 Toastr::info('Invalid Credentials. Please enter correct credentials', 'error!!', ["positionClass" => "toast-bottom-right"]);
                 Log::info('Login failed: Invalid credentials');
                 return redirect()->back()->with('error', 'Invalid credentials');
             }
 
-            // Generate a JWT token
             $token = JWTAuth::fromUser($teacher);
-
             if (!$token) {
                 Log::error('JWT Token not generated');
                 return redirect()->back()->with('error', 'Failed to generate token');
@@ -41,16 +36,13 @@ class AuthController extends Controller
             Toastr::success('Login successful', 'success', ["positionClass" => "toast-bottom-right"]);
             Log::info('Login successful: Token generated', ['token' => $token]);
 
-            // Store token in cookies for the client to use
             $cookie = cookie('token', $token, 15 * 60);
             Log::info('Redirecting to home with cookie');
 
             return redirect()->route('home')->withCookie($cookie);
 
         } catch (Exception $e) {
-            // Log the exception message for debugging purposes
             Log::error('Login error: ' . $e->getMessage());
-
             return response()->json([
                 'success' => false,
                 'message' => 'An error occurred during login',
