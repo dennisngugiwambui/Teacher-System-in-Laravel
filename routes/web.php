@@ -43,6 +43,8 @@ Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'regist
 
 Route::get('logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
 
+Route::get('/profile', [App\Http\Controllers\Api\HomeController::class, 'profile'])->middleware('auth')->name('profile');
+
 
 //// Post
 //Route::post('posts/create', [App\Http\Controllers\Api\PostController::class, 'create'])->middleware('jwtAuth');

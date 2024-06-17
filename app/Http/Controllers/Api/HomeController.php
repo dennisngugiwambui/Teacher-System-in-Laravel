@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function profile(Request $request)
     {
-        $Teacher = Teacher::where('unique_id', $unique_id)->first();
+        $Teacher = Teacher::find($id);
 
         // Check if the teacher exists
         if (!$Teacher) {
