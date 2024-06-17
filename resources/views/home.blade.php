@@ -815,6 +815,16 @@
     });
 </script>
 
+<script>
+    // JavaScript example to check if the cookie is set
+    document.cookie.split(';').forEach(cookie => {
+        if (cookie.trim().startsWith('token=')) {
+            console.log('Token cookie is set:', cookie);
+        }
+    });
+
+</script>
+
 </body>
 
 </html>

@@ -23,6 +23,26 @@ class Authenticate extends Middleware
             'Unauthenticated.', $guards, $this->redirectTo($request)
         );
     }
+    // app/Http/Middleware/Authenticate.php
+    public function handle($request, Closure $next, ...$guards)
+    {
+        if ($token = $request->cookie('token')) {
+            try {
+                $user = JWTAuth::setToken($token)->authenticate();
+                if ($user) {
+                    Auth::login($user);
+                }
+            } catch (Exception $e) {
+                Log::error('Token authentication failed', ['error' => $e->getMessage()]);
+                return redirect()->route('login');
+            }
+        } else {
+            return redirect()->route('login');
+        }
+
+        return $next($request);
+    }
+
 
     protected function redirectTo($request)
     {
