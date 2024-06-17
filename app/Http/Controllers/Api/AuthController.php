@@ -28,6 +28,7 @@ class AuthController extends Controller
             }
 
             $token = JWTAuth::fromUser($teacher);
+
             if (!$token) {
                 Log::error('JWT Token not generated');
                 return redirect()->back()->with('error', 'Failed to generate token');
@@ -36,19 +37,21 @@ class AuthController extends Controller
             Toastr::success('Login successful', 'success', ["positionClass" => "toast-bottom-right"]);
             Log::info('Login successful: Token generated', ['token' => $token]);
 
-            $cookie = cookie('token', $token, 15 * 60);
-            Log::info('Redirecting to home with cookie');
+            $cookie = cookie('token', $token, 15);
+            Log::info('Redirecting to home with cookie', ['cookie' => $cookie]);
 
             return redirect()->route('home')->withCookie($cookie);
 
         } catch (Exception $e) {
             Log::error('Login error: ' . $e->getMessage());
+
             return response()->json([
                 'success' => false,
                 'message' => 'An error occurred during login',
             ], 500);
         }
     }
+
 
 
 
