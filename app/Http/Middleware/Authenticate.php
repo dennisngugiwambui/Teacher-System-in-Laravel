@@ -58,7 +58,7 @@ class Authenticate extends Middleware
     protected function unauthenticated($request, array $guards)
     {
         throw new \Illuminate\Auth\AuthenticationException(
-            'Unauthenticated.', $guards, $this->redirectTo($reques)
+            'Unauthenticated.', $guards, $this->redirectTo($request)
         );
     }
 
