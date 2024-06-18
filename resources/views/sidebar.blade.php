@@ -10,13 +10,13 @@
             </li>
 
             <li class="sidebar-item active">
-                <a class="sidebar-link" href="{{route('home')}}">
+                <a class="sidebar-link" href="{{ route('home', ['unique_id' => Auth::user()->unique_id]) }}">
                     <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                 </a>
             </li>
 
             <li class="sidebar-item">
-                <a class="sidebar-link" href="{{route('profile')}}">
+                <a class="sidebar-link" href="{{ route('profile', ['unique_id' => Auth::user()->unique_id]) }}">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                 </a>
             </li>
