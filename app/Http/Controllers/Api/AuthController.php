@@ -53,6 +53,7 @@ class AuthController extends Controller
         }
     }
 
+
     public function register(Request $request)
     {
         $encryptedPassword = Hash::make($request->employee_id);
