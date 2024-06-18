@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +37,7 @@ Route::get('/', [App\Http\Controllers\Api\AuthController::class, 'login'])->name
 
 //Route::get('/home', [App\Http\Controllers\Api\AuthController::class, 'home'])->name('home')->middleware('auth');
 
-Route::get('/home/{unique_id}', [App\Http\Controllers\Api\AuthController::class, 'home'])->middleware('auth')->name('home');
+//Route::get('/home/{unique_id}', [App\Http\Controllers\Api\AuthController::class, 'home'])->middleware('auth')->name('home');
 
 Route::post('Authlogin', [App\Http\Controllers\Api\AuthController::class, 'Authlogin'])->name('auth.login');
 
@@ -43,7 +45,13 @@ Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'regist
 
 Route::get('logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
 
-Route::get('/profile', [App\Http\Controllers\Api\HomeController::class, 'profile'])->middleware('auth')->name('profile');
+//Route::get('/profile', [App\Http\Controllers\Api\HomeController::class, 'profile'])->middleware('auth')->name('profile');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/home/{unique_id}', [AuthController::class, 'home'])->name('home');
+    Route::get('/profile/{unique_id}', [HomeController::class, 'profile'])->name('profile');
+});
+
 
 
 //// Post

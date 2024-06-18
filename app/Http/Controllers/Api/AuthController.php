@@ -97,10 +97,12 @@ class AuthController extends Controller
     }
 
 
-    public function home(Request $request)
+    public function home()
     {
         $teacher = Auth::user();
-        return view('home', ['unique_id' => $teacher->unique_id]);
+        $unique_id = $teacher->unique_id;
+
+        return view('home', ['unique_id' => $unique_id]);
     }
 
 }
