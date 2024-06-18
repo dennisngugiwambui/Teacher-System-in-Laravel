@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
+
     public function Authlogin(Request $request)
     {
         try {
@@ -40,7 +41,7 @@ class AuthController extends Controller
             $cookie = cookie('token', $token, 15); // 15 minutes expiry
             Log::info('Redirecting to home with cookie', ['cookie' => $cookie]);
 
-            return redirect()->route('home')->withCookie($cookie);
+            return redirect()->route('home', ['unique_id' => $teacher->unique_id])->withCookie($cookie);
 
         } catch (Exception $e) {
             Log::error('Login error: ' . $e->getMessage());
@@ -51,12 +52,6 @@ class AuthController extends Controller
             ], 500);
         }
     }
-
-
-
-
-
-
 
     public function register(Request $request)
     {
@@ -100,8 +95,11 @@ class AuthController extends Controller
         return view('welcome');
     }
 
-    public function home()
+
+    public function home(Request $request)
     {
-        return view('home');
+        $teacher = Auth::user();
+        return view('home', ['unique_id' => $teacher->unique_id]);
     }
+
 }
