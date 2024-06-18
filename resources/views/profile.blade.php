@@ -58,7 +58,7 @@
 <div class="wrapper">
     <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
-            <a class="sidebar-brand" href="{{route('home')}}">
+            <a class="sidebar-brand" href="index.html">
                 <span class="align-middle">Teacher Dashboard</span>
             </a>
 
@@ -67,14 +67,14 @@
                     Pages
                 </li>
 
-                <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{route('home')}}">
+                <li class="sidebar-item active">
+                    <a class="sidebar-link" href="{{ route('home', ['unique_id' => $unique_id]) }}">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                     </a>
                 </li>
 
-                <li class="sidebar-item active">
-                    <a class="sidebar-link" href="{{route('profile')}}">
+                <li class="sidebar-item">
+                    <a class="sidebar-link" href="{{ route('profile', ['unique_id' => $unique_id]) }}">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                     </a>
                 </li>
@@ -149,6 +149,7 @@
             </ul>
         </div>
     </nav>
+
 
     <div class="main">
         <nav class="navbar navbar-expand navbar-light navbar-bg">
