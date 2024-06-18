@@ -71,13 +71,13 @@
                 </li>
 
                 <li class="sidebar-item active">
-                    <a class="sidebar-link" href="{{ route('home', ['unique_id' => $unique_id]) }}">
+                    <a class="sidebar-link" href="{{ route('home', ['unique_id' => auth()->user()->unique_id]) }}">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="{{ route('profile', ['unique_id' => $unique_id]) }}">
+                    <a class="sidebar-link" href="{{ route('profile', ['unique_id' => auth()->user()->unique_id]) }}">
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                     </a>
                 </li>

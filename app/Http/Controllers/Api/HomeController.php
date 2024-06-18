@@ -6,19 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use Brian2694\Toastr\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
     public function profile(Request $request)
     {
-        $Teacher = Teacher::find($id);
 
-        // Check if the teacher exists
-        if (!$Teacher) {
-            Toastr::error('error trying to load profile!!','error!');
-            return response()->json(['error' => 'Teacher not found'], 404);
-        }
+        $teacher = Auth::user();
+        $unique_id = $teacher->unique_id;
 
-        return view('profile',  ['teacher' => $Teacher]);
+        return view('profile', ['unique_id' => $unique_id]);
+        //return view('profile',  ['teacher' => $Teacher]);
     }
 }
