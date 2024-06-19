@@ -43,7 +43,7 @@ Route::post('Authlogin', [App\Http\Controllers\Api\AuthController::class, 'Authl
 
 Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'register']);
 
-Route::get('logout', [App\Http\Controllers\Api\AuthController::class, 'logout']);
+Route::get('logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])->name('logout');
 
 Route::get('/profile', [App\Http\Controllers\Api\HomeController::class, 'profile'])->middleware('auth')->name('profile');
 
