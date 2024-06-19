@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard</title>
-    <link href="{{asset('Teacher/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link href="{{asset('Teacher/css/app.css')}}" rel="stylesheet">
+    <link href="{{ asset('Teacher/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('Teacher/css/app.css') }}" rel="stylesheet">
     <style>
         .profile-header {
             position: relative;
@@ -66,41 +66,43 @@
                             </div>
                             <div class="card-body">
                                 <div class="profile-header">
-                                    <img src="{{asset('Teacher/img/cover.jpg')}}" class="profile-cover" alt="Profile Cover">
+                                    <img src="{{ asset('Teacher/img/cover.jpg') }}" class="profile-cover" alt="Profile Cover">
                                     <div class="profile-avatar">
-                                        <img src="{{asset('Teacher/img/avatars/avatar.jpg')}}" class="avatar img-fluid" alt="Profile Avatar" width="100" height="100">
+                                        <img src="{{ asset('Teacher/img/avatar.jpg') }}" class="avatar img-fluid" alt="Profile Avatar" width="100" height="100">
                                     </div>
                                     <div class="profile-info">
-                                        <h4>Charles Hall</h4>
+                                        <h4>{{ $teacher->full_name }}</h4>
                                         <p class="text-muted">Teacher</p>
                                     </div>
                                 </div>
-                                <form class="mt-5">
+                                <form class="mt-5" method="POST" action="">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="inputFirstName" class="form-label">First Name</label>
-                                                <input type="text" class="form-control" id="inputFirstName" placeholder="Enter your first name">
+                                                <input type="text" class="form-control" id="inputFirstName" name="first_name" value="{{ $teacher->first_name }}" placeholder="Enter your first name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="inputLastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="inputLastName" placeholder="Enter your last name">
+                                                <input type="text" class="form-control" id="inputLastName" name="last_name" value="{{ $teacher->last_name }}" placeholder="Enter your last name">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3">
                                         <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="inputEmail" placeholder="Enter your email">
+                                        <input type="email" class="form-control" id="inputEmail" name="email" value="{{ $teacher->email }}" placeholder="Enter your email">
                                     </div>
                                     <div class="mb-3">
                                         <label for="inputAddress" class="form-label">Address</label>
-                                        <input type="text" class="form-control" id="inputAddress" placeholder="Enter your address">
+                                        <input type="text" class="form-control" id="inputAddress" name="address" value="{{ $teacher->address }}" placeholder="Enter your address">
                                     </div>
                                     <div class="mb-3">
                                         <label for="inputPhone" class="form-label">Phone</label>
-                                        <input type="text" class="form-control" id="inputPhone" placeholder="Enter your phone number">
+                                        <input type="text" class="form-control" id="inputPhone" name="phone" value="{{ $teacher->phone }}" placeholder="Enter your phone number">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Save Changes</button>
                                 </form>
@@ -112,18 +114,20 @@
                                 <h5 class="card-title mb-0">Change Password</h5>
                             </div>
                             <div class="card-body">
-                                <form>
+                                <form method="POST" action="">
+                                    @csrf
+                                    @method('PUT')
                                     <div class="mb-3">
                                         <label for="inputCurrentPassword" class="form-label">Current Password</label>
-                                        <input type="password" class="form-control" id="inputCurrentPassword" placeholder="Enter your current password">
+                                        <input type="password" class="form-control" id="inputCurrentPassword" name="current_password" placeholder="Enter your current password">
                                     </div>
                                     <div class="mb-3">
                                         <label for="inputNewPassword" class="form-label">New Password</label>
-                                        <input type="password" class="form-control" id="inputNewPassword" placeholder="Enter your new password">
+                                        <input type="password" class="form-control" id="inputNewPassword" name="new_password" placeholder="Enter your new password">
                                     </div>
                                     <div class="mb-3">
                                         <label for="inputConfirmPassword" class="form-label">Confirm New Password</label>
-                                        <input type="password" class="form-control" id="inputConfirmPassword" placeholder="Confirm your new password">
+                                        <input type="password" class="form-control" id="inputConfirmPassword" name="new_password_confirmation" placeholder="Confirm your new password">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Change Password</button>
                                 </form>
@@ -166,7 +170,7 @@
     </div>
 </div>
 
-<script src="{{asset('Teacher/js/app.js')}}"></script>
+<script src="{{ asset('Teacher/js/app.js') }}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsvectormap@3.0.0/dist/js/jsvectormap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jsvectormap@3.0.0/dist/maps/world.js"></script>

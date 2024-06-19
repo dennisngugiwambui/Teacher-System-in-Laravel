@@ -16,7 +16,9 @@ class HomeController extends Controller
         $teacher = Auth::user();
         $unique_id = $teacher->unique_id;
 
-        return view('profile', ['unique_id' => $unique_id]);
+
+
+        return view('profile', ['unique_id' => $unique_id], ['teacher'=>$teacher]);
         //return view('profile',  ['teacher' => $Teacher]);
     }
 }
