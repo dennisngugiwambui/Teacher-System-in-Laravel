@@ -12,13 +12,9 @@ class HomeController extends Controller
 {
     public function profile(Request $request)
     {
-
         $teacher = Auth::user();
         $unique_id = $teacher->unique_id;
 
-
-
-        return view('profile', ['unique_id' => $unique_id], ['teacher'=>$teacher]);
-        //return view('profile',  ['teacher' => $Teacher]);
+        return view('profile', ['unique_id' => $unique_id, 'teacher' => $teacher]);
     }
 }

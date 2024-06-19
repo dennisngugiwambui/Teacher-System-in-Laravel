@@ -87,8 +87,8 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="inputLastName" class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" id="inputLastName" name="last_name" value="{{ $teacher->last_name }}" placeholder="Enter your last name">
+                                                <label for="inputLastName" class="form-label">Employee ID</label>
+                                                <input type="text" class="form-control" id="inputLastName" name="last_name" value="{{ $teacher->employee_id }}" placeholder="Enter your last name">
                                             </div>
                                         </div>
                                     </div>
@@ -145,7 +145,7 @@
                 <div class="row text-muted">
                     <div class="col-6 text-start">
                         <p class="mb-0">
-                            &copy; 2024 - <a href="index.html" class="text-muted">Teacher Dashboard</a>
+                            &copy; 2024 - <a href="{{route('home')}}" class="text-muted">Teacher Dashboard</a>
                         </p>
                     </div>
                     <div class="col-6 text-end">

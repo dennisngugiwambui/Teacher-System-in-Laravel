@@ -7,22 +7,20 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use App\Models\Teacher;  // Use the Teachers model instead of User model
+use App\Models\Teacher;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
 use Illuminate\Support\Facades\Log;
 
-
 class AuthController extends Controller
 {
-
     public function Authlogin(Request $request)
     {
         try {
             $credentials = $request->only(['phone_number', 'employee_id']);
             $teacher = Teacher::where('phone_number', $credentials['phone_number'])->first();
 
-            if (!$teacher || $teacher->employee_id != $credentials['employee_id']) {
+            if (!$teacher || !Hash::check($credentials['employee_id'], $teacher->employee_id)) {
                 Toastr::info('Invalid Credentials. Please enter correct credentials', 'error!!', ["positionClass" => "toast-bottom-right"]);
                 Log::info('Login failed: Invalid credentials');
                 return redirect()->back()->with('error', 'Invalid credentials');
@@ -53,7 +51,6 @@ class AuthController extends Controller
         }
     }
 
-
     public function register(Request $request)
     {
         $encryptedPassword = Hash::make($request->employee_id);
@@ -67,7 +64,7 @@ class AuthController extends Controller
             $teacher->employee_id = $encryptedPassword;
             $teacher->save();
 
-            return redirect()->route('username', ['username' => $teacher->username])->with('success', 'User logged in successfully');
+            return redirect()->route('username', ['username' => $teacher->username])->with('success', 'User registered successfully');
         } catch (Exception $e) {
             return response()->json([
                 'success' => false,
@@ -79,11 +76,8 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         try {
-            // Invalidate the token
             Auth::logout();
-
-            Toastr::success('logout successful', 'success',  ["positionClass" => "toast-bottom-right"]);
-
+            Toastr::success('Logout successful', 'success', ["positionClass" => "toast-bottom-right"]);
             return redirect()->route('index');
         } catch (Exception $e) {
             Log::error('Error invalidating token: ' . $e->getMessage());
@@ -96,13 +90,10 @@ class AuthController extends Controller
         return view('welcome');
     }
 
-
     public function home()
     {
         $teacher = Auth::user();
         $unique_id = $teacher->unique_id;
-
-        return view('home', ['unique_id' => $unique_id]);
+        return view('home', ['unique_id' => $unique_id, 'teacher' => $teacher]);
     }
-
 }
