@@ -11,12 +11,23 @@ use App\Models\Teacher;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Exception;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
     public function Authlogin(Request $request)
     {
         try {
+            $validator = Validator::make($request->all(), [
+                'phone_number' => 'required',
+                'employee_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                Log::info('Validation failed: ', ['errors' => $validator->errors()]);
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
             $credentials = $request->only(['phone_number', 'employee_id']);
             $teacher = Teacher::where('phone_number', $credentials['phone_number'])->first();
 
@@ -42,8 +53,7 @@ class AuthController extends Controller
             return redirect()->route('home', ['unique_id' => $teacher->unique_id])->withCookie($cookie);
 
         } catch (Exception $e) {
-            Log::error('Login error: ' . $e->getMessage());
-
+            Log::error('Login error: ' . $e->getMessage(), ['exception' => $e]);
             return response()->json([
                 'success' => false,
                 'message' => 'An error occurred during login',
@@ -53,11 +63,21 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $encryptedPassword = Hash::make($request->employee_id);
-
-        $teacher = new Teacher;
-
         try {
+            $validator = Validator::make($request->all(), [
+                'username' => 'required',
+                'phone_number' => 'required|unique:teachers',
+                'email' => 'required|email|unique:teachers',
+                'employee_id' => 'required',
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+
+            $encryptedPassword = Hash::make($request->employee_id);
+            $teacher = new Teacher;
+
             $teacher->username = $request->username;
             $teacher->phone_number = $request->phone_number;
             $teacher->email = $request->email;
@@ -66,6 +86,7 @@ class AuthController extends Controller
 
             return redirect()->route('username', ['username' => $teacher->username])->with('success', 'User registered successfully');
         } catch (Exception $e) {
+            Log::error('Registration error: ' . $e->getMessage(), ['exception' => $e]);
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage(),
