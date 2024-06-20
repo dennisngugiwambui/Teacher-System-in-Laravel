@@ -94,6 +94,8 @@ class AuthController extends Controller
         }
     }
 
+    public function logour
+
 //    public function logout(Request $request)
 //    {
 //        try {
@@ -105,6 +107,8 @@ class AuthController extends Controller
 //            return response()->json(['error' => 'Could not parse token']);
 //        }
 //    }
+
+
 
     public function login()
     {
