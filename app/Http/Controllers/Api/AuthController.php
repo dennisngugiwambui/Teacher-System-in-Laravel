@@ -94,17 +94,17 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request)
-    {
-        try {
-            Auth::logout();
-            Toastr::success('Logout successful', 'success', ["positionClass" => "toast-bottom-right"]);
-            return redirect()->route('index');
-        } catch (Exception $e) {
-            Log::error('Error invalidating token: ' . $e->getMessage());
-            return response()->json(['error' => 'Could not parse token']);
-        }
-    }
+//    public function logout(Request $request)
+//    {
+//        try {
+//            Auth::logout();
+//            Toastr::success('Logout successful', 'success', ["positionClass" => "toast-bottom-right"]);
+//            return redirect()->route('index');
+//        } catch (Exception $e) {
+//            Log::error('Error invalidating token: ' . $e->getMessage());
+//            return response()->json(['error' => 'Could not parse token']);
+//        }
+//    }
 
     public function login()
     {
