@@ -94,7 +94,25 @@ class AuthController extends Controller
         }
     }
 
-    public function logour
+
+    public function logout(Request $request)
+    {
+        try {
+            if (Auth::check()) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                Toastr::success('Logout successful', 'success', ["positionClass" => "toast-bottom-right"]);
+                return redirect()->route('index');
+            } else {
+                return response()->json(['error' => 'User is not authenticated'], 401);
+            }
+        } catch (Exception $e) {
+            Log::error('Error during logout: ' . $e->getMessage());
+            return response()->json(['error' => 'Logout failed'], 500);
+        }
+    }
 
 //    public function logout(Request $request)
 //    {
