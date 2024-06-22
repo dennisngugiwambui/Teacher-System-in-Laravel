@@ -340,7 +340,7 @@
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="inputFirstName" class="form-label">First Name</label>
-                                                <input type="text" class="form-control" id="inputFirstName" name="first_name" value="{{ $teacher->first_name }}" placeholder="Enter your first name">
+                                                <input type="text" class="form-control" id="inputFirstName" name="first_name" value="{{ $teacher->full_name }}" placeholder="Enter your first name">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
