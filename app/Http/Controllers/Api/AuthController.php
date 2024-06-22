@@ -29,35 +29,33 @@ class AuthController extends Controller
             }
 
             $credentials = $request->only(['phone_number', 'employee_id']);
-            $teacher = Teacher::where('phone_number', $credentials['phone_number'])->first();
+            $teacher = Teacher::where('phone_number', $credentials['phone_number'])
+                ->where('employee_id', $credentials['employee_id'])
+                ->first();
 
-            if (!$teacher || !Hash::check($credentials['employee_id'], $teacher->employee_id)) {
-                Toastr::info('Invalid Credentials. Please enter correct credentials', 'error!!', ["positionClass" => "toast-bottom-right"]);
+            if (!$teacher) {
                 Log::info('Login failed: Invalid credentials');
                 return redirect()->back()->with('error', 'Invalid credentials');
             }
 
-            $token = JWTAuth::fromUser($teacher);
-
-            if (!$token) {
-                Log::error('JWT Token not generated');
+            try {
+                $token = JWTAuth::fromUser($teacher);
+            } catch (JWTException $e) {
+                Log::error('JWT Token not generated: ' . $e->getMessage());
                 return redirect()->back()->with('error', 'Failed to generate token');
             }
 
-            Toastr::success('Login successful', 'success', ["positionClass" => "toast-bottom-right"]);
             Log::info('Login successful: Token generated', ['token' => $token]);
 
+            Toastr::success('Login successful', 'Success', ["positionClass" => "toast-bottom-right"]);
+
             $cookie = cookie('token', $token, 15); // 15 minutes expiry
-            Log::info('Redirecting to home with cookie', ['cookie' => $cookie]);
 
             return redirect()->route('home', ['unique_id' => $teacher->unique_id])->withCookie($cookie);
 
         } catch (Exception $e) {
             Log::error('Login error: ' . $e->getMessage(), ['exception' => $e]);
-            return response()->json([
-                'success' => false,
-                'message' => 'An error occurred during login',
-            ], 500);
+            return redirect()->back()->with('error', 'An error occurred during login');
         }
     }
 
