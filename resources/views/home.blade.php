@@ -12,7 +12,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="shortcut icon" href="{{asset('Teacher/img/icons/icon-48x48.png')}}" />
 
-    <link rel="canonical" href="https://demo-basic.adminkit.io/" />
 
     <title>Teacher Dashboard</title>
 
@@ -61,7 +60,7 @@
 
     <nav id="sidebar" class="sidebar js-sidebar">
         <div class="sidebar-content js-simplebar">
-            <a class="sidebar-brand" href="index.html">
+            <a class="sidebar-brand" href="{{route('home',  ['unique_id' => auth()->user()->unique_id])}}">
                 <span class="align-middle">Teacher Dashboard</span>
             </a>
 
@@ -317,7 +316,7 @@
                     </li>
                 </ul>
             </div>
-
+        </nav>
 
         <main class="content">
             <div class="container-fluid p-0">
