@@ -317,7 +317,7 @@
                     </li>
                 </ul>
             </div>
-        </nav>
+
 
         <main class="content">
             <div class="container-fluid p-0">

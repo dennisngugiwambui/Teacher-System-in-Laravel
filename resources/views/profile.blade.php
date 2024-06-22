@@ -52,7 +52,6 @@
 
 <div class="wrapper">
     <nav id="sidebar" class="sidebar">
-        <nav id="sidebar" class="sidebar js-sidebar">
             <div class="sidebar-content js-simplebar">
                 <a class="sidebar-brand" href="index.html">
                     <span class="align-middle">Teacher Dashboard</span>
@@ -145,7 +144,6 @@
                 </ul>
             </div>
         </nav>
-    </nav>
     <div class="main">
         <nav class="navbar navbar-expand navbar-light bg-white">
             <nav class="navbar navbar-expand navbar-light navbar-bg">
