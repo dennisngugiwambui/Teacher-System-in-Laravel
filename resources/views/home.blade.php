@@ -82,8 +82,8 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-sign-in.html">
-                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+                    <a class="sidebar-link" href="{{route('leave')}}">
+                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Leave</span>
                     </a>
                 </li>
 
@@ -329,7 +329,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">Profile</h5>
                                 <p class="card-text">Manage your profile information.</p>
-                                <a href="#" class="btn btn-primary">Go to Profile</a>
+                                <a href="{{route('profile')}}" class="btn btn-primary">Go to Profile</a>
                             </div>
                         </div>
                     </div>

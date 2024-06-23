@@ -26,4 +26,9 @@ class HomeController extends Controller
         return view('profile', ['unique_id' => $unique_id, 'teacher' => $teacher]);
     }
 
+    public function leave()
+    {
+        return view('Leave');
+    }
+
 }

@@ -47,6 +47,8 @@ Route::get('logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])
 
 Route::get('/profile', [App\Http\Controllers\Api\HomeController::class, 'profile'])->middleware('auth')->name('profile');
 
+Route::get('/leave', [App\Http\Controllers\Api\HomeController::class, 'leave'])->name('leave');
+
 
 
 
