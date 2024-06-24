@@ -321,49 +321,46 @@
         <main class="content">
             <div class="container-fluid p-0">
 
-                <h1 class="h3 mb-3"><strong>Analytics</strong> Dashboard</h1>
+                <div class="leave-info">
+                    <h5><strong>Total Leave Requests: </strong> <span id="leave-count">3</span></h5>
+                    <button class="btn btn-info btn-inquiry">Send Inquiry</button>
+                </div>
 
                 <div class="row">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card card-custom card-profile">
-                            <div class="card-body">
-                                <h5 class="card-title">Profile</h5>
-                                <p class="card-text">Manage your profile information.</p>
-                                <a href="#" class="btn btn-primary">Go to Profile</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card card-custom card-assignment">
-                            <div class="card-body">
-                                <h5 class="card-title">Assignment</h5>
-                                <p class="card-text">View and manage assignments.</p>
-                                <a href="#" class="btn btn-primary">Go to Assignments</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card card-custom card-leave">
-                            <div class="card-body">
-                                <h5 class="card-title">Leave</h5>
-                                <p class="card-text">Request and manage leaves.</p>
-                                <a href="#" class="btn btn-primary">Go to Leaves</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card card-custom card-register">
-                            <div class="card-body">
-                                <h5 class="card-title">Register</h5>
-                                <p class="card-text">Register for new sessions.</p>
-                                <a href="#" class="btn btn-primary">Go to Register</a>
-                            </div>
+                    <div class="col-12">
+                        <div class="leave-form">
+                            <h3 class="mb-3"><strong>Leave Request Form</strong></h3>
+                            <form>
+                                <div class="form-group">
+                                    <label for="leave-type">Leave Type</label>
+                                    <select class="form-control" id="leave-type" required>
+                                        <option value="" disabled selected>Select leave type</option>
+                                        <option value="sick">Sick Leave</option>
+                                        <option value="casual">Casual Leave</option>
+                                        <option value="annual">Annual Leave</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="start-date">Start Date</label>
+                                    <input type="date" class="form-control" id="start-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="end-date">End Date</label>
+                                    <input type="date" class="form-control" id="end-date" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="reason">Reason</label>
+                                    <textarea class="form-control" id="reason" rows="4" required></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Submit Leave Request</button>
+                            </form>
                         </div>
                     </div>
                 </div>
 
             </div>
         </main>
+
 
 
         <footer class="footer">
@@ -396,6 +393,9 @@
     </div>
 </div>
 
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="{{asset('Teacher/js/app.js')}}"></script>
 
 <script>
