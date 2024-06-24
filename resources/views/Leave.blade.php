@@ -360,7 +360,7 @@
 
                 <div class="leave-info">
                     <h5><strong>Total Leave Requests: </strong> <span id="leave-count">3</span></h5>
-                    <button class="btn btn-info btn-inquiry">Send Inquiry</button>
+                    <button class="btn btn-info btn-inquiry" data-toggle="modal" data-target="#inquiryModal">Send Inquiry</button>
                 </div>
 
                 <div class="row">
@@ -397,6 +397,33 @@
 
             </div>
         </main>
+
+        <!-- Inquiry Modal -->
+        <div class="modal fade" id="inquiryModal" tabindex="-1" aria-labelledby="inquiryModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inquiryModalLabel">Send Inquiry</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="destination">Send To</label>
+                                <input type="text" class="form-control" id="destination" value="Admin" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" rows="4" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
