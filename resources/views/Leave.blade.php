@@ -21,6 +21,42 @@
 </head>
 
 <style>
+    .content {
+        padding: 20px;
+    }
+
+    .leave-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .leave-info h5 {
+        margin: 0;
+    }
+
+    .leave-form {
+        background-color: #f8f9fa;
+        padding: 20px;
+        border-radius: 8px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .btn-inquiry {
+        margin-left: auto;
+    }
+
+    .card-custom {
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .card-custom:hover {
+        transform: translateY(-10px);
+    }
     .card-custom {
         border-radius: 15px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
