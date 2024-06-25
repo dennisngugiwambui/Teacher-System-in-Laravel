@@ -115,10 +115,9 @@
                         <i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-sign-in.html">
-                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">/span>
+                    <a class="sidebar-link" href="{{route('leave')}}">
+                        <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Leave</span>
                     </a>
                 </li>
 
