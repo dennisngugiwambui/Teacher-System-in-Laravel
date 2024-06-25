@@ -17,7 +17,7 @@ class Teacher extends Model implements JWTSubject
         'address',
         'date_of_birth',
         'gender',
-        'employee_id',
+        'employee_id'
         'job_title',
         'subjects_taught',
         'department',
