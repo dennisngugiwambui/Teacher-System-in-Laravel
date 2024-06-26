@@ -458,6 +458,36 @@
 <script src="{{asset('Teacher/js/app.js')}}"></script>
 
 <script>
+    $(document).ready(function () {
+        // Initialize select2
+        $("#select2").select2({
+            placeholder: "Select leave type",
+            allowClear: true
+        });
+
+        // Example: Fetch the total leave requests from the server and update the count
+        $.ajax({
+            url: '/api/leave-count', // Replace with your API endpoint
+            method: 'GET',
+            success: function (data) {
+                $('#leave-count').text(data.leaveCount);
+            },
+            error: function () {
+                $('#leave-count').text('N/A');
+            }
+        });
+
+        // Handle form submission
+        $('form').on('submit', function (e) {
+            e.preventDefault();
+            // Handle form submission logic here
+            alert('Leave request submitted successfully!');
+        });
+    });
+</script>
+
+
+<script>
     document.addEventListener("DOMContentLoaded", function() {
         var ctx = document.getElementById("chartjs-dashboard-line").getContext("2d");
         var gradient = ctx.createLinearGradient(0, 0, 0, 225);
