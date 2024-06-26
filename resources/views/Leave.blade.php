@@ -18,6 +18,8 @@
 
     <link href="{{asset('Teacher/css/app.css')}}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet">
 </head>
 
 <style>
@@ -57,38 +59,30 @@
     .card-custom:hover {
         transform: translateY(-10px);
     }
-    .card-custom {
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        transition: transform 0.2s;
-    }
 
-    .card-custom:hover {
-        transform: scale(1.05);
-    }
-
-    .card-custom .card-body {
+    .modal-content {
+        border-radius: 10px;
         padding: 20px;
     }
 
-    .card-profile {
-        background-color: #f8f9fa;
-        color: #343a40;
+    .modal-header {
+        border-bottom: none;
     }
 
-    .card-assignment {
-        background-color: #e3f2fd;
-        color: #1e88e5;
+    .select2-container .select2-selection--single {
+        height: 38px;
     }
 
-    .card-leave {
-        background-color: #ffebee;
-        color: #d32f2f;
+    .select2-container--default .select2-selection--single .select2-selection__rendered {
+        line-height: 36px;
     }
 
-    .card-register {
-        background-color: #e8f5e9;
-        color: #388e3c;
+    .select2-container--default .select2-selection--single .select2-selection__arrow {
+        height: 36px;
+    }
+
+    .textarea-large {
+        height: 150px;
     }
 </style>
 
@@ -370,13 +364,11 @@
                             <form>
                                 <div class="form-group">
                                     <label for="leave-type">Leave Type</label>
-                                    <select class="form-control" id="leave-type" required>
+                                    <select class="form-control" id="select2" required>
                                         <option value="" disabled selected>Select leave type</option>
                                         <option value="sick">Sick Leave</option>
                                         <option value="casual">Casual Leave</option>
                                         <option value="annual">Annual Leave</option>
-                                        <option value="annual">Maternity Leave</option>
-                                        <option value="annual">Others</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -462,6 +454,7 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script src="{{asset('Teacher/js/app.js')}}"></script>
 
 <script>
