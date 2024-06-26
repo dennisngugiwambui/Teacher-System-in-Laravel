@@ -375,6 +375,8 @@
                                         <option value="sick">Sick Leave</option>
                                         <option value="casual">Casual Leave</option>
                                         <option value="annual">Annual Leave</option>
+                                        <option value="annual">Maternity Leave</option>
+                                        <option value="annual">Others</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
