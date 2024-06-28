@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('leaves', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('teacher_id');
+            $table->enum('leave_type');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->text('reason');
             $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('teacher_id')->references('id')->on('teachers')->onDelete('cascade');
         });
     }
 
