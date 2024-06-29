@@ -20,6 +20,6 @@ class Leave extends Model
     // Define the relationship with the Teacher model
     public function teacher()
     {
-        return $this->belongsTo(Teacher::class)
+        return $this->belongsTo(Teacher::class);
     }
 }
