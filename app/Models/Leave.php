@@ -14,7 +14,7 @@ class Leave extends Model
         'leave_type',
         'start_date',
         'end_date',
-        'reason'
+        'reason',
     ];
 
     // Define the relationship with the Teacher model
