@@ -336,7 +336,7 @@
                     <div class="col-sm-6 col-lg-3">
                         <div class="card card-custom card-assignment">
                             <div class="card-body">
-                                <h5 class="cad-title">Assignment</h5>
+                                <h5 class="card-title">Assignment</h5>
                                 <p class="card-text">View and manage assignments.</p>
                                 <a href="#" class="btn btn-primary">Go to Assignments</a>
                             </div>
