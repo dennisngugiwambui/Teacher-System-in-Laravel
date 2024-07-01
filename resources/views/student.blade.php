@@ -53,6 +53,39 @@
         background-color: #e8f5e9;
         color: #388e3c;
     }
+    .card {
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card-header {
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #e3e6f0;
+    }
+
+    .table {
+        color: #333;
+    }
+
+    .table thead th {
+        background-color: #e3f2fd;
+        color: #1e88e5;
+        font-weight: 600;
+    }
+
+    .table-hover tbody tr:hover {
+        background-color: #f5f5f5;
+    }
+
+    .btn-primary {
+        background-color: #1e88e5;
+        border-color: #1e88e5;
+    }
+
+    .btn-primary:hover {
+        background-color: #1976d2;
+        border-color: #1976d2;
+    }
 
 </style>
 
