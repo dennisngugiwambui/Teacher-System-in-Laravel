@@ -53,6 +53,7 @@
         background-color: #e8f5e9;
         color: #388e3c;
     }
+
 </style>
 
 <body>
@@ -320,51 +321,52 @@
 
         <main class="content">
             <div class="container-fluid p-0">
-
-                <h1 class="h3 mb-3"><strong>Student</strong> Record</h1>
+                <h1 class="h3 mb-3"><strong>Student</strong> Records</h1>
 
                 <div class="row">
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card card-custom card-profile">
-                            <div class="card-body">
-                                <h5 class="card-title">Profile</h5>
-                                <p class="card-text">Manage your profile information.</p>
-                                <a href="{{route('profile')}}" class="btn btn-primary">Go to Profile</a>
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title mb-0">Student List</h5>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card card-custom card-assignment">
                             <div class="card-body">
-                                <h5 class="card-title">Assignment</h5>
-                                <p class="card-text">View and manage assignments.</p>
-                                <a href="#" class="btn btn-primary">Go to Assignments</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card card-custom card-leave">
-                            <div class="card-body">
-                                <h5 class="card-title">Leave</h5>
-                                <p class="card-text">Request and manage leaves.</p>
-                                <a href="#" class="btn btn-primary">Go to Leaves</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-3">
-                        <div class="card card-custom card-register">
-                            <div class="card-body">
-                                <h5 class="card-title">Register</h5>
-                                <p class="card-text">Register for new sessions.</p>
-                                <a href="#" class="btn btn-primary">Go to Register</a>
+                                <table class="table table-hover my-0">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Class</th>
+                                        <th>Email</th>
+                                        <th>Attendance</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>John Doe</td>
+                                        <td>10A</td>
+                                        <td>john.doe@example.com</td>
+                                        <td>95%</td>
+                                        <td><button class="btn btn-primary btn-sm" onclick="viewStudentDetails(1)">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>002</td>
+                                        <td>Jane Smith</td>
+                                        <td>10B</td>
+                                        <td>jane.smith@example.com</td>
+                                        <td>92%</td>
+                                        <td><button class="btn btn-primary btn-sm" onclick="viewStudentDetails(2)">View</button></td>
+                                    </tr>
+                                    <!-- Add more rows as needed -->
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </main>
-
 
         <footer class="footer">
             <div class="container-fluid">
@@ -397,6 +399,16 @@
 </div>
 
 <script src="{{asset('Teacher/js/app.js')}}"></script>
+
+<script>
+    function viewStudentDetails(studentId) {
+        // Implement the logic to show detailed student information
+        // This could open a modal or navigate to a new page
+        console.log("Viewing details for student ID:", studentId);
+        // Example: window.location.href = `/student-details/${studentId}`;
+    }
+</script>
+
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
