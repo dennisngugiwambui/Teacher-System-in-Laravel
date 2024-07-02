@@ -120,7 +120,7 @@
 
                 <li class="sidebar-item">
                     <a class="sidebar-link" href="{{route('students')}}">
-                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
+                        <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Students</span>
                     </a>
                 </li>
 
