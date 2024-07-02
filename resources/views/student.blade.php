@@ -103,7 +103,7 @@
                     Pages
                 </li>
 
-                <li class="sidebar-item active">
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('home', ['unique_id' => auth()->user()->unique_id]) }}">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                     </a>
@@ -122,7 +122,7 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a class="sidebar-link" href="pages-sign-up.html">
+                    <a class="sidebar-link active" href="{{route('students')}}">
                         <i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
                     </a>
                 </li>
