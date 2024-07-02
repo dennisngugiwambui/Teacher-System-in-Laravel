@@ -100,7 +100,7 @@
                     Pages
                 </li>
 
-                <li class="sidebar-item active">
+                <li class="sidebar-item">
                     <a class="sidebar-link" href="{{ route('home', ['unique_id' => auth()->user()->unique_id]) }}">
                         <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
                     </a>
@@ -112,7 +112,7 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item">
+                <li class="sidebar-item active">
                     <a class="sidebar-link" href="{{route('leave')}}">
                         <i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Leave</span>
                     </a>
