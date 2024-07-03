@@ -52,12 +52,21 @@ class AuthController extends Controller
             Toastr::success('Login successful', 'Success', ["positionClass" => "toast-bottom-right"]);
 
             // Store the token in a secure, HTTP-only cookie
-            $cookie = cookie('jwt_token', $token, 60, null, null, true, true); // 60 minutes expiry, secure, HTTP-only
+            $cookie = cookie('jwt_token', $token, 60, null, null, true, true);
+            // Store teacher data in session
+            session([
+                'teacher_id' => $teacher->id,
+                'teacher_unique_id' => $teacher->unique_id,
+                'jwt_token' => $token
+            ]);
 
-            // Store the token in the session as well
-            session(['jwt_token' => $token]);
+            Log::info('Attempting to redirect to home', ['unique_id' => $teacher->unique_id]);
 
-            return redirect()->route('home', ['unique_id' => $teacher->unique_id])->withCookie($cookie);
+            return redirect()->route('home', ['unique_id' => $teacher->unique_id])
+                ->withCookie($cookie)
+                ->with('token', $token);  // Pass token to the session as well
+
+            //return redirect()->route('home', ['unique_id' => $teacher->unique_id])->withCookie($cookie);
         } catch (Exception $e) {
             Log::error('Login error: ' . $e->getMessage(), ['exception' => $e]);
             return redirect()->back()->with('error', 'An error occurred during login');
@@ -135,10 +144,24 @@ class AuthController extends Controller
         return view('welcome');
     }
 
-    public function home()
+//    public function home()
+//    {
+//        $teacher = Auth::user();
+//        $unique_id = $teacher->unique_id;
+//        return view('home', ['unique_id' => $unique_id, 'teacher' => $teacher]);
+//    }
+    public function home($unique_id)
     {
-        $teacher = Auth::user();
-        $unique_id = $teacher->unique_id;
-        return view('home', ['unique_id' => $unique_id, 'teacher' => $teacher]);
+        Log::info('Home route accessed', ['unique_id' => $unique_id]);
+
+        $teacher = Auth::guard('teacher')->user();
+
+        if (!$teacher || $teacher->unique_id !== $unique_id) {
+            Log::error('Unauthorized access to home', ['unique_id' => $unique_id]);
+            return redirect()->route('login');
+        }
+
+        Log::info('Home page rendered', ['teacher_id' => $teacher->id]);
+        return view('home', ['teacher' => $teacher]);
     }
 }

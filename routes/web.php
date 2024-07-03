@@ -37,7 +37,7 @@ Route::get('/', [App\Http\Controllers\Api\AuthController::class, 'login'])->name
 
 //Route::get('/home', [App\Http\Controllers\Api\AuthController::class, 'home'])->name('home')->middleware('auth');
 
-Route::get('/home', [App\Http\Controllers\Api\AuthController::class, 'home'])->middleware('auth')->name('home');
+Route::get('/home/{unique_id}', [App\Http\Controllers\Api\HomeController::class, 'index'])->middleware('jwt.auth')->name('home');
 
 Route::post('Authlogin', [App\Http\Controllers\Api\AuthController::class, 'Authlogin'])->name('auth.login');
 
@@ -45,11 +45,11 @@ Route::post('register', [App\Http\Controllers\Api\AuthController::class, 'regist
 
 Route::get('logout', [App\Http\Controllers\Api\AuthController::class, 'logout'])->name('logout');
 
-Route::get('/profile', [App\Http\Controllers\Api\HomeController::class, 'profile'])->middleware('auth')->name('profile');
+Route::get('/profile', [App\Http\Controllers\Api\HomeController::class, 'profile'])->middleware('jwt.auth')->name('profile');
 
-Route::get('/leave', [App\Http\Controllers\Api\HomeController::class, 'leave'])->name('leave');
+Route::get('/leave', [App\Http\Controllers\Api\HomeController::class, 'leave'])->middleware('jwt.auth')->name('leave');
 
-Route::get('/students', [App\Http\Controllers\Api\HomeController::class, 'students'])->name('students');
+Route::get('/students', [App\Http\Controllers\Api\HomeController::class, 'students'])->middleware('jwt.auth')->name('students');
 
 
 

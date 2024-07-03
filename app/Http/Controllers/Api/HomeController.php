@@ -10,14 +10,29 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+    public function index(Request $request)
+    {
+        Log::info('Home route accessed');
+
+        $teacher_id = session('teacher_id');
+        $teacher = Teacher::find($teacher_id);
+
+        if (!$teacher) {
+            Log::error('Unauthorized access to home');
+            return redirect()->route('login')->with('error', 'Unauthorized access');
+        }
+
+        Log::info('Home page rendered', ['teacher_id' => $teacher->id]);
+        return view('home', ['teacher' => $teacher]);
+    }
     public function __construct()
     {
-        $this->middleware('jwt.auth:teacher');
+        $this->middleware('auth:teacher');
     }
 
     public function profile(Request $request)
     {
-        $teacher = auth('teacher')->user();
+        $teacher = Auth::guard('teacher')->user();
 
         if (!$teacher || !$teacher->unique_id) {
             return response()->json(['error' => 'Unauthorized'], 401);
