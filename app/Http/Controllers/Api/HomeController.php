@@ -10,25 +10,41 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-//    public function profile(Request $request)
-//    {
-//        $teacher = Auth::user();
-//        $unique_id = $teacher->unique_id;
-//
-//        return view('profile', ['unique_id' => $unique_id, 'teacher' => $teacher]);
-//    }
+    public function __construct()
+    {
+        $this->middleware('auth:teacher');
+    }
 
     public function profile(Request $request)
     {
-        $teacher = Auth::user();
-        $unique_id = $teacher->unique_id;
+        $teacher = Auth::guard('teacher')->user();
 
-        return view('profile', ['unique_id' => $unique_id, 'teacher' => $teacher]);
+        if (!$teacher || !$teacher->unique_id) {
+            return redirect()->route('login');
+        }
+
+        return view('profile', ['unique_id' => $teacher->unique_id, 'teacher' => $teacher]);
     }
 
-    public function leave()
+    public function leave(Request $request)
     {
+        $teacher = Auth::guard('teacher')->user();
+
+        if (!$teacher || !$teacher->unique_id) {
+            return redirect()->route('login');
+        }
+
         return view('Leave');
     }
 
+    public function students(Request $request)
+    {
+        $teacher = Auth::guard('teacher')->user();
+
+        if (!$teacher || !$teacher->unique_id) {
+            return redirect()->route('login');
+        }
+
+        return view('student');
+    }
 }

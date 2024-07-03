@@ -49,6 +49,8 @@ Route::get('/profile', [App\Http\Controllers\Api\HomeController::class, 'profile
 
 Route::get('/leave', [App\Http\Controllers\Api\HomeController::class, 'leave'])->name('leave');
 
+Route::get('/students', [App\Http\Controllers\Api\HomeController::class, 'students'])->name('students');
+
 
 
 
