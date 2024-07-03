@@ -17,13 +17,13 @@ class HomeController extends Controller
 
     public function profile(Request $request)
     {
-        $teacher = Auth::guard('teacher')->user();
+        $teacher = auth('teacher')->user();
 
         if (!$teacher || !$teacher->unique_id) {
-            return redirect()->route('login');
+            return response()->json(['error' => 'Unauthorized'], 401);
         }
 
-        return view('profile', ['unique_id' => $teacher->unique_id, 'teacher' => $teacher]);
+        return response()->json(['teacher' => $teacher]);
     }
 
     public function leave(Request $request)

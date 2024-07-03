@@ -29,6 +29,7 @@ class AuthController extends Controller
             }
 
             $credentials = $request->only(['phone_number', 'employee_id']);
+
             $teacher = Teacher::where('phone_number', $credentials['phone_number'])
                 ->where('employee_id', $credentials['employee_id'])
                 ->first();
@@ -39,26 +40,29 @@ class AuthController extends Controller
             }
 
             try {
-                $token = JWTAuth::fromUser($teacher);
+                if (!$token = JWTAuth::fromUser($teacher)) {
+                    return redirect()->back()->with('error', 'Invalid credentials');
+                }
             } catch (JWTException $e) {
                 Log::error('JWT Token not generated: ' . $e->getMessage());
                 return redirect()->back()->with('error', 'Failed to generate token');
             }
 
             Log::info('Login successful: Token generated', ['token' => $token]);
-
             Toastr::success('Login successful', 'Success', ["positionClass" => "toast-bottom-right"]);
 
-            $cookie = cookie('token', $token, 15); // 15 minutes expiry
+            // Store the token in a secure, HTTP-only cookie
+            $cookie = cookie('jwt_token', $token, 60, null, null, true, true); // 60 minutes expiry, secure, HTTP-only
+
+            // Store the token in the session as well
+            session(['jwt_token' => $token]);
 
             return redirect()->route('home', ['unique_id' => $teacher->unique_id])->withCookie($cookie);
-
         } catch (Exception $e) {
             Log::error('Login error: ' . $e->getMessage(), ['exception' => $e]);
             return redirect()->back()->with('error', 'An error occurred during login');
         }
     }
-
     public function register(Request $request)
     {
         try {
