@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:teacher');
+        $this->middleware('jwt.auth:teacher');
     }
 
     public function profile(Request $request)

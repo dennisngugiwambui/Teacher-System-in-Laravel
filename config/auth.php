@@ -46,7 +46,7 @@ return [
             'hash' => false,
         ],
         'teacher' => [
-            'driver' => 'session',
+            'driver' => 'jwt',
             'provider' => 'teachers',
         ],
     ],
