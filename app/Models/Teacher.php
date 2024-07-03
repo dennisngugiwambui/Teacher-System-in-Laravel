@@ -5,10 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Tymon\JWTAuth\Contracts\JWTSubject;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Teacher extends Model implements JWTSubject
 {
     use HasFactory;
+
+    protected $guard = 'teacher';
 
     protected $fillable = [
         'full_name',
