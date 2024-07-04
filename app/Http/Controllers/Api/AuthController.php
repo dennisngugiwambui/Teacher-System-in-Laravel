@@ -60,11 +60,19 @@ class AuthController extends Controller
                 'jwt_token' => $token
             ]);
 
+            Log::info('Session data stored', [
+                'teacher_id' => session('teacher_id'),
+                'teacher_unique_id' => session('teacher_unique_id'),
+                'jwt_token' => session('jwt_token')
+            ]);
+
             Log::info('Attempting to redirect to home', ['unique_id' => $teacher->unique_id]);
 
             return redirect()->route('home', ['unique_id' => $teacher->unique_id])
                 ->withCookie($cookie)
                 ->with('token', $token);  // Pass token to the session as well
+//            // Instead of using route name, let's use the URL directly
+            //return redirect('/home')->with('debug', 'Redirecting from Authlogin');
 
             //return redirect()->route('home', ['unique_id' => $teacher->unique_id])->withCookie($cookie);
         } catch (Exception $e) {

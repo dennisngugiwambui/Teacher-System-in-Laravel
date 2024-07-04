@@ -37,7 +37,7 @@ Route::get('/', [App\Http\Controllers\Api\AuthController::class, 'login'])->name
 
 //Route::get('/home', [App\Http\Controllers\Api\AuthController::class, 'home'])->name('home')->middleware('auth');
 
-Route::get('/home/{unique_id}', [App\Http\Controllers\Api\HomeController::class, 'index'])->middleware('jwt.auth')->name('home');
+Route::get('/home', [App\Http\Controllers\Api\HomeController::class, 'index'])->middleware('jwt.auth')->name('home');
 
 Route::post('Authlogin', [App\Http\Controllers\Api\AuthController::class, 'Authlogin'])->name('auth.login');
 

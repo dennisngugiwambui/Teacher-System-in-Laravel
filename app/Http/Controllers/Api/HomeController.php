@@ -10,24 +10,34 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
+
+//    public function __construct()
+//    {
+//        $this->middleware('auth:teacher');
+//    }
     public function index(Request $request)
     {
-        Log::info('Home route accessed');
+        Log::info('Home route accessed', [
+            'session_data' => session()->all(),
+            'debug' => session('debug')
+        ]);
 
         $teacher_id = session('teacher_id');
+
+        if (!$teacher_id) {
+            Log::error('No teacher_id in session');
+            return redirect()->route('login')->with('error', 'Session expired. Please login again.');
+        }
+
         $teacher = Teacher::find($teacher_id);
 
         if (!$teacher) {
-            Log::error('Unauthorized access to home');
-            return redirect()->route('login')->with('error', 'Unauthorized access');
+            Log::error('Teacher not found', ['teacher_id' => $teacher_id]);
+            return redirect()->route('login')->with('error', 'Invalid user. Please login again.');
         }
 
         Log::info('Home page rendered', ['teacher_id' => $teacher->id]);
         return view('home', ['teacher' => $teacher]);
-    }
-    public function __construct()
-    {
-        $this->middleware('auth:teacher');
     }
 
     public function profile(Request $request)
