@@ -25,8 +25,8 @@ class HomeController extends Controller
         $teacher_id = session('teacher_id');
 
         if (!$teacher_id) {
-            Log::error('No teacher_id in session');
-            return redirect()->route('logi')->with('error', 'Session expired. Please login again.');
+            Log::error('No teacher_id in sessin');
+            return redirect()->route('login')->with('error', 'Session expired. Please login again.');
         }
 
         $teacher = Teacher::find($teacher_id);
