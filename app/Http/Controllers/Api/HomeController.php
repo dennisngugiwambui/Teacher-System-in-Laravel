@@ -19,7 +19,7 @@ class HomeController extends Controller
     {
         Log::info('Home route accessed', [
             'session_data' => session()->all(),
-            'debug' => session('debug')
+            'debug' => session('debug
         ]);
 
         $teacher_id = session('teacher_id');
