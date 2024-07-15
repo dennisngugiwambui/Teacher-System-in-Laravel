@@ -80,7 +80,7 @@ class AuthController extends Controller
             return redirect()->back()->with('error', 'An error occurred during login');
         }
     }
-    public function register(Request $request
+    public function register(Request $request)
     {
         try {
             $validator = Validator::make($request->all(), [
