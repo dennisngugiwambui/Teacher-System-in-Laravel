@@ -91,7 +91,7 @@ class AuthController extends Controller
             ]);
 
             if ($validator->fails()) {
-                return redirect()->back()->withErrors($validator)->withInput();
+                return redirect()->back()->withErrors($validator)->withInput()
             }
 
             $encryptedPassword = Hash::make($request->employee_id);
