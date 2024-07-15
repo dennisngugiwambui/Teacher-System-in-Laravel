@@ -76,7 +76,7 @@ class AuthController extends Controller
 
             //return redirect()->route('home', ['unique_id' => $teacher->unique_id])->withCookie($cookie);
         } catch (Exception $e) {
-            Log::error('Login error: ' . $e->getMessage(), ['exception' => $e]);
+            Log::error('Login error: ' . $e->getMessage(), ['exception' => $e])
             return redirect()->back()->with('error', 'An error occurred during login');
         }
     }
