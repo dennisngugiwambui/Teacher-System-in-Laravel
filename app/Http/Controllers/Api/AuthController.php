@@ -99,7 +99,7 @@ class AuthController extends Controller
 
             $teacher->username = $request->username;
             $teacher->phone_number = $request->phone_number;
-            $teacher->email = $request->email;
+            $teacher->email = $request->email
             $teacher->employee_id = $encryptedPassword;
             $teacher->save();
 
