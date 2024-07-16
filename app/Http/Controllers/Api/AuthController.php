@@ -98,7 +98,7 @@ class AuthController extends Controller
             $teacher = new Teacher;
 
             $teacher->username = $request->username;
-            $teacher->phone_number = $request->phone_number
+            $teacher->phone_number = $request->phone_number;
             $teacher->email = $request->email;
             $teacher->employee_id = $encryptedPassword;
             $teacher->save();
