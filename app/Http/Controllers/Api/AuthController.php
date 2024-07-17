@@ -94,7 +94,7 @@ class AuthController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
 
-            $encryptedPassword = Hash::make($request->employee_id);
+            $encryptedPassword = Hash::make($request->employee_id)
             $teacher = new Teacher;
 
             $teacher->username = $request->username;
