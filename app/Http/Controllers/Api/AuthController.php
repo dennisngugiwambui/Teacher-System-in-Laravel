@@ -95,7 +95,7 @@ class AuthController extends Controller
             }
 
             $encryptedPassword = Hash::make($request->employee_id);
-            $teacher = new Teacher
+            $teacher = new Teacher;
 
             $teacher->username = $request->username;
             $teacher->phone_number = $request->phone_number;
