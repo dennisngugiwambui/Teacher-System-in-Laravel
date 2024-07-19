@@ -129,7 +129,7 @@ class AuthController extends Controller
             }
         } catch (Exception $e) {
             Log::error('Error during logout: ' . $e->getMessage());
-            return response()->json(['error' => 'Logout failed'], 500)
+            return response()->json(['error' => 'Logout failed'], 500);
         }
     }
 
