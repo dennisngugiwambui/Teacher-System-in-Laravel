@@ -128,7 +128,7 @@ class AuthController extends Controller
                 return response()->json(['error' => 'User is not authenticated'], 401);
             }
         } catch (Exception $e) {
-            Log::error('Error during logout: ' . $e->getMessage())
+            Log::error('Error during logout: ' . $e->getMessage());
             return response()->json(['error' => 'Logout failed'], 500);
         }
     }
