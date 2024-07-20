@@ -105,7 +105,7 @@ class AuthController extends Controller
 
             return redirect()->route('username', ['username' => $teacher->username])->with('success', 'User registered successfully');
         } catch (Exception $e) {
-            Log::error('Registration error: ' . $e->getMessage(), ['exception' => $e])
+            Log::error('Registration error: ' . $e->getMessage(), ['exception' => $e]);
             return response()->json([
                 'success' => false,
                 'message' => $e->getMessage(),
