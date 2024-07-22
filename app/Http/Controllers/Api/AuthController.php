@@ -85,7 +85,7 @@ class AuthController extends Controller
         try {
             $validator = Validator::make($request->all(), [
                 'username' => 'required',
-                'phone_number' => 'required|unique:teachers'
+                'phone_number' => 'required|unique:teachers',
                 'email' => 'required|email|unique:teachers',
                 'employee_id' => 'required',
             ]);
