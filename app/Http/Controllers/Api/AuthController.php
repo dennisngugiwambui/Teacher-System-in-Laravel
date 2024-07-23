@@ -166,7 +166,7 @@ class AuthController extends Controller
 
         if (!$teacher || $teacher->unique_id !== $unique_id) {
             Log::error('Unauthorized access to home', ['unique_id' => $unique_id]);
-            return redirect()->route('login');
+            return redirect()->route('login')
         }
 
         Log::info('Home page rendered', ['teacher_id' => $teacher->id]);
