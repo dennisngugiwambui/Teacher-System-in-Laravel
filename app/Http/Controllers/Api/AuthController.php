@@ -169,7 +169,7 @@ class AuthController extends Controller
             return redirect()->route('login');
         }
 
-        Log::info('Home page rendered', ['teacher_id' => $teacher->id]);
+        Log::info('Home page rendered', ['teacher_id' => $teacher->id])
         return view('home', ['teacher' => $teacher]);
     }
 }
