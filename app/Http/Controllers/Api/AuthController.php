@@ -160,7 +160,7 @@ class AuthController extends Controller
 //    }
     public function home($unique_id)
     {
-        Log::info('Home route accessed', ['unique_id' => $unique_id])
+        Log::info('Home route accessed', ['unique_id' => $unique_id]);
 
         $teacher = Auth::guard('teacher')->user();
 
