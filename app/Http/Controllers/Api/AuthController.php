@@ -158,7 +158,7 @@ class AuthController extends Controller
 //        $unique_id = $teacher->unique_id;
 //        return view('home', ['unique_id' => $unique_id, 'teacher' => $teacher]);
 //    }
-    public function home($unique_id)
+    public function home($unique_id);
     {
         Log::info('Home route accessed', ['unique_id' => $unique_id]);
 
