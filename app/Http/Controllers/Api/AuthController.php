@@ -162,7 +162,7 @@ class AuthController extends Controller
     {
         Log::info('Home route accessed', ['unique_id' => $unique_id]);
 
-        $teacher = Auth::guard('teacher')->user();
+        $teacher = Auth::guard('teacher')->user();=
 
         if (!$teacher || $teacher->unique_id !== $unique_id) {
             Log::error('Unauthorized access to home', ['unique_id' => $unique_id]);
